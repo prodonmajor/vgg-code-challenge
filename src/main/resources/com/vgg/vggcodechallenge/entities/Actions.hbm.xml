@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-Feb-2020 23:40:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.vgg.vggcodechallenge.entities.Actions" table="actions" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="projects" class="com.vgg.vggcodechallenge.entities.Projects" fetch="select">
+            <column name="project_id" />
+        </many-to-one>
+        <property name="description" type="string">
+            <column name="description" length="2000000000" not-null="true" />
+        </property>
+        <property name="note" type="string">
+            <column name="note" length="2000000000" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

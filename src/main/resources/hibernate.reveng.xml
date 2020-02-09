@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+    <schema-selection/>
+    <table-filter match-name="projects"/>
+    <table-filter match-name="users"/>
+    <table-filter match-name="actions"/>
+  
+    <table name="projects">
+        <primary-key>
+            <generator class="assigned"/>
+            <key-column name="id" type="integer"/>
+        </primary-key>      
+    </table>
+    
+    <table name="users">
+        <primary-key>
+            <generator class="assigned"/>
+            <key-column name="id" type="integer"/>
+        </primary-key>      
+    </table>
+    
+    <table name="actions">
+        <primary-key>
+            <generator class="assigned"/>
+            <key-column name="id" type="integer"/>
+        </primary-key>      
+    </table>
+</hibernate-reverse-engineering>

@@ -8,8 +8,7 @@ package com.vgg.vggcodechallenge.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
+import static springfox.documentation.builders.PathSelectors.regex;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -26,20 +25,20 @@ public class SwaggerConfig {
     @Bean
     public Docket accountingBridgeApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .forCodeGeneration(true)
-                .select().apis(RequestHandlerSelectors.basePackage("com.easycoop.uba.engine.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(metaData());
+                .groupName("VGG CODE CHALLENGE REST API's")
+                .apiInfo(apiInfo())                
+                .select()                
+                .paths(regex("/api.*"))
+                .build();
     }
     
-    private ApiInfo metaData() {
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Project Radical - UBA Engine REST API")
-                .description("REST API for UBA engine logic. "
+                .title("Project VGG - VGG CODE CHALLENGE REST API")
+                .description("REST API for VGG Business logic. "
                         + "Refer to use case documentation for more information")
-                .termsOfServiceUrl("https://appedevtermsofservice.com/")
-                .contact(new Contact("App Dev Team", "https://speaknoevilseenoevil/", "love@forall.com"))
+                .termsOfServiceUrl("https://vggtermsofservice.com/")
+                .contact(new Contact("Atabo Fred Team", "https://stillpracticing/", "myemail@gmail.com"))
                 .license("Proprietary source code")
                 .licenseUrl("https://lightsideoftheforce")
                 .build();

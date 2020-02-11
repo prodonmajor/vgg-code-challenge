@@ -5,9 +5,13 @@
  */
 package com.vgg.vggcodechallenge.query.factory;
 
+import com.vgg.vggcodechallenge.query.ActionServiceQuery;
 import com.vgg.vggcodechallenge.query.DaoServiceQuery;
+import com.vgg.vggcodechallenge.query.ProjectsQuery;
 import com.vgg.vggcodechallenge.query.UsersQuery;
+import com.vgg.vggcodechallenge.query.impl.ActionServiceQueryImpl;
 import com.vgg.vggcodechallenge.query.impl.DaoServiceQueryImpl;
+import com.vgg.vggcodechallenge.query.impl.ProjectsQueryImpl;
 import com.vgg.vggcodechallenge.query.impl.UsersQueryImpl;
 
 /**
@@ -22,5 +26,13 @@ public class ServiceQueryFactory {
 
     public static UsersQuery getUsersServiceQuery() {
         return new UsersQueryImpl();
+    }
+
+    public static ProjectsQuery getProjectsQuery() {
+        return new ProjectsQueryImpl();
+    }
+
+    public static ActionServiceQuery getActionServiceQuery() {
+        return new ActionServiceQueryImpl();
     }
 }

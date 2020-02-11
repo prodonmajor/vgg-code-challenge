@@ -6,7 +6,6 @@
 package com.vgg.vggcodechallenge.service;
 
 import com.vgg.vggcodechallenge.entities.Users;
-import com.vgg.vggcodechallenge.jwt.JwtUtil;
 import com.vgg.vggcodechallenge.modelmapping.Mapper;
 import com.vgg.vggcodechallenge.models.response.ResponseInformation;
 import com.vgg.vggcodechallenge.models.users.UsersDTO;
@@ -36,7 +35,7 @@ import org.springframework.validation.BindingResult;
  * @author Administrator
  */
 @Component
-public class UsersService implements UserDetailsService {
+public class UsersService {
 
     private @Autowired
     PasswordEncoder encoder;
@@ -46,10 +45,8 @@ public class UsersService implements UserDetailsService {
     Mapper modelMapping;
     private @Autowired
     DaoServiceQuery daoService;
-    @Autowired
-    AuthenticationManager authenticationManager;
-    @Autowired
-    JwtUtil util;
+//    @Autowired
+//    AuthenticationManager authenticationManager;
 
     public ResponseEntity<?> register(UsersDTO dto, BindingResult result) throws Exception {
 
@@ -88,42 +85,42 @@ public class UsersService implements UserDetailsService {
         return ResponseEntity.ok(new ResponseInformation("Successful"));
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try {
-            if (!usersQuery.checkUserExists(username)) {
-                throw new UsernameNotFoundException("User not found with username: " + username);
-            }
-            System.out.println("user found:::");
-            Users user = usersQuery.getUserInformation(username);
-            System.out.println("my user name::"+user.getUsername()+", password:::"+user.getPassword());
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                    new ArrayList<>());
-        } catch (Exception ex) {
-            Logger.getLogger(UsersService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        try {
+//            if (!usersQuery.checkUserExists(username)) {
+//                throw new UsernameNotFoundException("User not found with username: " + username);
+//            }
+//            System.out.println("user found:::");
+//            Users user = usersQuery.getUserInformation(username);
+//            System.out.println("my user name::"+user.getUsername()+", password:::"+user.getPassword());
+//            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+//                    new ArrayList<>());
+//        } catch (Exception ex) {
+//            Logger.getLogger(UsersService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//
+//    }
 
     public ResponseEntity<?> createAuthenticationToken(UsersDTO authenticationRequest, BindingResult result) throws Exception {
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//
+//        final UserDetails userDetails = loadUserByUsername(authenticationRequest.getUsername());
+//
+//        final String jwt = util.generateToken(userDetails);
 
-        final UserDetails userDetails = loadUserByUsername(authenticationRequest.getUsername());
-
-        final String jwt = util.generateToken(userDetails);
-
-        return ResponseEntity.ok(new ResponseInformation(jwt));
+        return ResponseEntity.ok("");
     }
 
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
-    }
+//    private void authenticate(String username, String password) throws Exception {
+//        try {
+//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+//        } catch (DisabledException e) {
+//            throw new Exception("USER_DISABLED", e);
+//        } catch (BadCredentialsException e) {
+//            throw new Exception("INVALID_CREDENTIALS", e);
+//        }
+//    }
 }

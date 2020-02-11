@@ -5,7 +5,9 @@
  */
 package com.vgg.vggcodechallenge.config;
 
+import com.vgg.vggcodechallenge.query.ActionServiceQuery;
 import com.vgg.vggcodechallenge.query.DaoServiceQuery;
+import com.vgg.vggcodechallenge.query.ProjectsQuery;
 import com.vgg.vggcodechallenge.query.UsersQuery;
 import com.vgg.vggcodechallenge.query.factory.ServiceQueryFactory;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +29,15 @@ public class HibernateConfig {
     public UsersQuery getUsersQuery() {
         return ServiceQueryFactory.getUsersServiceQuery();
     }
-    
+
+    @Bean
+    public ActionServiceQuery getActionServiceQuery() {
+        return ServiceQueryFactory.getActionServiceQuery();
+    }
+
+    @Bean
+    public ProjectsQuery getProjectsQuery() {
+        return ServiceQueryFactory.getProjectsQuery();
+    }
+
 }

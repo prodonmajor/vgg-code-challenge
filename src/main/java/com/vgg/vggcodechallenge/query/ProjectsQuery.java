@@ -10,5 +10,5 @@ package com.vgg.vggcodechallenge.query;
  * @author Administrator
  */
 public interface ProjectsQuery {
-    
+    public boolean buildDatabaseIndex() throws Exception;
 }

@@ -6,8 +6,8 @@
 package com.vgg.vggcodechallenge.controller;
 
 import com.vgg.vggcodechallenge.models.response.ResponseInformation;
-import com.vgg.vggcodechallenge.models.users.UsersDTO;
-import com.vgg.vggcodechallenge.service.UsersService;
+import com.vgg.vggcodechallenge.models.users.ProjectDTO;
+import com.vgg.vggcodechallenge.service.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -27,28 +27,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Api(value = "vgg controller API calls")
-@RequestMapping("/api/users")
-public class UsersController {
+@RequestMapping("/api/projects")
+public class ProjectController {
 
     private @Autowired
-    UsersService userService;
+    ProjectService projectService;
 
-    @PostMapping("/register")
-    @ApiOperation(value = "SAC User login")
+    @PostMapping("/createnewproject")
+    @ApiOperation(value = "vgg project api's")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "successful", response = ResponseInformation.class),
         @ApiResponse(code = 400, message = "incorrect information provided", response = ResponseInformation.class),
         @ApiResponse(code = 500, message = "internal error from database or other system functions - critical!", response = ResponseInformation.class)
     })
-    public ResponseEntity<?> register(@Valid @RequestBody UsersDTO userDTO, BindingResult result) throws Exception {
-        return userService.register(userDTO, result);
-        
+    public ResponseEntity<?> createNewProject(@Valid @RequestBody ProjectDTO dto, BindingResult result) throws Exception {
+        return projectService.createNewProject(dto, result);
     }
-    
-    @PostMapping("/auth")
-    public ResponseEntity<?> auth(@Valid @RequestBody UsersDTO userDTO, BindingResult result) throws Exception {
-        return userService.createAuthenticationToken(userDTO, result);
-        
-    }
-
 }
